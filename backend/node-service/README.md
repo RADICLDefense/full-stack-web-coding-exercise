@@ -1,14 +1,15 @@
 # Node.js Backend Service
 
-A REST API service built with Express.js.
+A REST API service built with Express.js that connects to a PostgreSQL database.
 
 ## Features
 
 - Express.js web framework
 - CORS enabled
+- PostgreSQL database connection using `pg`
 - Environment variable configuration
 - Health check endpoint
-- Sample API endpoints
+- Database-driven API endpoints
 
 ## Setup
 
@@ -18,11 +19,24 @@ npm install
 ```
 
 2. Configure environment variables:
-```bash
-cp .env.example .env
+
+Create a `.env` file in the `backend/node-service` directory with the following content:
+
+```env
+# Database Configuration
+DATABASE_URL=postgresql://radicl_user:radicl_password@localhost:5432/radicl_db
+
+# Service Port
+PORT=3001
 ```
 
-3. Start the development server:
+3. Make sure PostgreSQL is running (via Docker Compose):
+```bash
+# From the project root
+docker-compose up -d
+```
+
+4. Start the development server:
 ```bash
 npm run dev
 ```
@@ -33,7 +47,7 @@ The service will run on `http://localhost:3001`
 
 - `GET /api/health` - Health check endpoint
 - `GET /api/node/hello` - Hello world endpoint
-- `GET /api/node/data` - Sample data endpoint
+- `GET /api/node/data` - Fetches items from PostgreSQL database where type='node'
 
 ## Scripts
 

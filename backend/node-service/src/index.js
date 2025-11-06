@@ -1,11 +1,28 @@
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
+import pkg from 'pg';
+const { Pool } = pkg;
 
 dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 3001;
+
+// Database connection pool
+const pool = new Pool({
+  connectionString: process.env.DATABASE_URL,
+});
+
+// Test database connection
+pool.on('connect', () => {
+  console.log('Connected to PostgreSQL database');
+});
+
+pool.on('error', (err) => {
+  console.error('Unexpected error on idle client', err);
+  process.exit(-1);
+});
 
 // Middleware
 app.use(cors());
@@ -27,14 +44,18 @@ app.get('/api/node/hello', (req, res) => {
   });
 });
 
-app.get('/api/node/data', (req, res) => {
-  res.json({ 
-    data: [
-      { id: 1, name: 'Item 1', type: 'node' },
-      { id: 2, name: 'Item 2', type: 'node' },
-      { id: 3, name: 'Item 3', type: 'node' }
-    ]
-  });
+app.get('/api/node/data', async (req, res) => {
+  try {
+    const result = await pool.query(
+      "SELECT id, name, type, description, created_at FROM items WHERE type = 'node' ORDER BY id"
+    );
+    res.json({ 
+      data: result.rows
+    });
+  } catch (err) {
+    console.error('Database error:', err);
+    res.status(500).json({ error: 'Failed to fetch data from database' });
+  }
 });
 
 // Error handling
