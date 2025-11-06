@@ -21,10 +21,17 @@ if ! command -v docker &> /dev/null; then
     exit 1
 fi
 
-# Check if Docker Compose is installed
-if ! command -v docker-compose &> /dev/null; then
+# Check if Docker Compose is installed (v1 or v2)
+if ! command -v docker-compose &> /dev/null && ! docker compose version &> /dev/null; then
     echo "❌ Docker Compose is not installed. Please install Docker Compose first."
     exit 1
+fi
+
+# Determine which docker-compose command to use
+if command -v docker-compose &> /dev/null; then
+    DOCKER_COMPOSE="docker-compose"
+else
+    DOCKER_COMPOSE="docker compose"
 fi
 
 echo "✅ Prerequisites check passed"
@@ -49,19 +56,19 @@ echo ""
 
 # Start PostgreSQL database
 echo "🗄️  Starting PostgreSQL database..."
-docker-compose up -d
+$DOCKER_COMPOSE up -d
 sleep 2
 
 # Wait for database to be healthy
 echo "⏳ Waiting for database to be ready..."
 for i in {1..30}; do
-    if docker-compose exec -T postgres pg_isready -U radicl_user > /dev/null 2>&1; then
+    if $DOCKER_COMPOSE exec -T postgres pg_isready -U radicl_user > /dev/null 2>&1; then
         echo "✅ Database is ready!"
         break
     fi
     if [ $i -eq 30 ]; then
         echo "⚠️  Database is taking longer than expected to start"
-        echo "   Check 'docker-compose logs postgres' for details"
+        echo "   Check '$DOCKER_COMPOSE logs postgres' for details"
     fi
     sleep 1
 done
@@ -69,25 +76,30 @@ echo ""
 
 # Check if database schema exists and initialize if needed
 echo "🔍 Checking database schema..."
-SCHEMA_EXISTS=$(docker-compose exec -T postgres psql -U radicl_user -d radicl_db -tAc "SELECT EXISTS (SELECT FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'users');" 2>/dev/null)
+SCHEMA_EXISTS=$($DOCKER_COMPOSE exec -T postgres psql -U radicl_user -d radicl_db -tAc "SELECT EXISTS (SELECT FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'users');" 2>/dev/null)
 
 if [ "$SCHEMA_EXISTS" = "t" ]; then
     echo "✅ Database schema already initialized"
 else
     echo "📝 Initializing database schema..."
-    if docker-compose exec -T postgres psql -U radicl_user -d radicl_db < database/init/01-init.sql > /dev/null 2>&1; then
+    if $DOCKER_COMPOSE exec -T postgres psql -U radicl_user -d radicl_db < database/init/01-init.sql > /dev/null 2>&1; then
         echo "✅ Database initialized successfully!"
     else
         echo "⚠️  Failed to initialize database. Trying alternative method..."
         # Alternative method: copy file into container and execute
         docker cp database/init/01-init.sql radicl-postgres:/tmp/01-init.sql
-        docker-compose exec -T postgres psql -U radicl_user -d radicl_db -f /tmp/01-init.sql
+        $DOCKER_COMPOSE exec -T postgres psql -U radicl_user -d radicl_db -f /tmp/01-init.sql
         echo "✅ Database initialized successfully!"
     fi
 fi
 echo ""
 
 # Install dependencies if needed
+if [ ! -d "node_modules" ]; then
+    echo "📦 Installing root dependencies..."
+    npm install
+fi
+
 if [ ! -d "frontend/node_modules" ]; then
     echo "📦 Installing frontend dependencies..."
     cd frontend && npm install && cd ..
@@ -112,7 +124,7 @@ echo "   📍 Go Backend:      http://localhost:3002"
 echo "   📍 React Frontend:  http://localhost:5173"
 echo ""
 echo "Press Ctrl+C to stop all services"
-echo "Note: Database will continue running. Use 'docker-compose stop' to stop it."
+echo "Note: Database will continue running. Use '$DOCKER_COMPOSE stop' to stop it."
 echo ""
 
 # Start all services using npm concurrently
