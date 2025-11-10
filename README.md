@@ -2,9 +2,11 @@
 
 > ## 🎯 START HERE: [CANDIDATE_README.md](CANDIDATE_README.md)
 > 
-> **If you're a candidate:** Everything you need is in **[CANDIDATE_README.md](CANDIDATE_README.md)**
+> **If you're a candidate:**
+> 1. Read **[CANDIDATE_README.md](CANDIDATE_README.md)** for exercise instructions and requirements
+> 2. Then read this file for technical documentation, setup instructions, and troubleshooting
 > 
-> This file contains technical documentation for the existing application. Candidates should begin with the exercise instructions in CANDIDATE_README.md.
+> Both files contain essential information for completing the exercise.
 
 ---
 
