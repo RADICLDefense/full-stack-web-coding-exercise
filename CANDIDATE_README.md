@@ -1,6 +1,6 @@
 # Fullstack Developer II - Take-Home Coding Exercise
 
-Welcome! This coding exercise is designed to assess your fullstack development skills for a **Fullstack Developer II** position at our cybersecurity-as-a-service company. We're excited to see what you can build!
+Welcome! This coding exercise is designed to assess your fullstack development skills for a **Fullstack Developer II** position at RADICL. We're excited to see what you can build!
 
 ## Overview
 
@@ -15,7 +15,7 @@ Your task is to transform this starter application into a **cybersecurity dashbo
 
 - **Use all tools at your disposal** - We encourage you to leverage AI assistants, documentation, Stack Overflow, and any other resources you typically use in your development workflow.
 - **Minimum time commitment:** 2 hours (but we encourage you to go above and beyond if you're having fun!)
-- **Fork this repository publicly** to your GitHub account and submit the link to your fork along with your deployed application.
+- **Fork this repository publicly** to your GitHub account and submit the link to your fork along with your deployed application. Complete the **[INTERVIEWEE_RESULTS.md](INTERVIEWEE_RESULTS.md)** file in your fork with your submission details.
 
 ## Getting Started
 
