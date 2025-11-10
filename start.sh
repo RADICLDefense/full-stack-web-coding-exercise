@@ -5,9 +5,30 @@ echo ""
 
 # Check if Node.js is installed
 if ! command -v node &> /dev/null; then
-    echo "❌ Node.js is not installed. Please install Node.js 18+ first."
+    echo "❌ Node.js is not installed. Please install Node.js 20.19+ or 22.12+ first."
+    echo "   We recommend using nvm: https://github.com/nvm-sh/nvm"
     exit 1
 fi
+
+# Check Node.js version (Vite 7 requires 20.19+ or 22.12+)
+NODE_VERSION=$(node -v | cut -d'v' -f2)
+NODE_MAJOR=$(echo $NODE_VERSION | cut -d'.' -f1)
+NODE_MINOR=$(echo $NODE_VERSION | cut -d'.' -f2)
+
+if [ "$NODE_MAJOR" -lt 20 ] || ([ "$NODE_MAJOR" -eq 20 ] && [ "$NODE_MINOR" -lt 19 ]); then
+    if [ "$NODE_MAJOR" -ne 22 ] || ([ "$NODE_MAJOR" -eq 22 ] && [ "$NODE_MINOR" -lt 12 ]); then
+        echo "❌ Node.js version $NODE_VERSION is too old."
+        echo "   Vite 7 requires Node.js 20.19+ or 22.12+"
+        echo "   Your version: v$NODE_VERSION"
+        echo ""
+        echo "   To upgrade using nvm:"
+        echo "   nvm install 20.19"
+        echo "   nvm use 20.19"
+        exit 1
+    fi
+fi
+
+echo "✅ Node.js version: v$NODE_VERSION"
 
 # Check if Go is installed
 if ! command -v go &> /dev/null; then
@@ -35,6 +56,37 @@ else
 fi
 
 echo "✅ Prerequisites check passed"
+echo ""
+
+# Check for .env files
+echo "🔍 Checking for environment configuration..."
+ENV_MISSING=0
+
+if [ ! -f "backend/node-service/.env" ]; then
+    echo "⚠️  Missing: backend/node-service/.env"
+    ENV_MISSING=1
+fi
+
+if [ ! -f "backend/go-service/.env" ]; then
+    echo "⚠️  Missing: backend/go-service/.env"
+    ENV_MISSING=1
+fi
+
+if [ $ENV_MISSING -eq 1 ]; then
+    echo ""
+    echo "❌ Environment files missing!"
+    echo ""
+    echo "   The backend services need .env files to connect to the database."
+    echo "   Please run these commands first:"
+    echo ""
+    echo "   cp ENV.example backend/node-service/.env"
+    echo "   cp ENV.example backend/go-service/.env"
+    echo ""
+    echo "   Then run this script again."
+    exit 1
+fi
+
+echo "✅ Environment configuration found"
 echo ""
 
 # Function to check if port is in use

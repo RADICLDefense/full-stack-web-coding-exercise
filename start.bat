@@ -5,9 +5,16 @@ echo.
 :: Check if Node.js is installed
 where node >nul 2>nul
 if %ERRORLEVEL% NEQ 0 (
-    echo Node.js is not installed. Please install Node.js 18+ first.
+    echo Node.js is not installed. Please install Node.js 20.19+ or 22.12+ first.
+    echo We recommend using nvm-windows: https://github.com/coreybutler/nvm-windows
     exit /b 1
 )
+
+:: Check Node.js version (Vite 7 requires 20.19+ or 22.12+)
+for /f "tokens=1" %%v in ('node -v') do set NODE_VERSION=%%v
+echo Node.js version: %NODE_VERSION%
+echo WARNING: Please ensure you have Node.js 20.19+ or 22.12+ for Vite 7 compatibility
+echo.
 
 :: Check if Go is installed
 where go >nul 2>nul
@@ -31,6 +38,37 @@ if %ERRORLEVEL% NEQ 0 (
 )
 
 echo Prerequisites check passed
+echo.
+
+:: Check for .env files
+echo Checking for environment configuration...
+set ENV_MISSING=0
+
+if not exist "backend\node-service\.env" (
+    echo WARNING: Missing backend\node-service\.env
+    set ENV_MISSING=1
+)
+
+if not exist "backend\go-service\.env" (
+    echo WARNING: Missing backend\go-service\.env
+    set ENV_MISSING=1
+)
+
+if %ENV_MISSING%==1 (
+    echo.
+    echo ERROR: Environment files missing!
+    echo.
+    echo The backend services need .env files to connect to the database.
+    echo Please run these commands first:
+    echo.
+    echo     copy ENV.example backend\node-service\.env
+    echo     copy ENV.example backend\go-service\.env
+    echo.
+    echo Then run this script again.
+    exit /b 1
+)
+
+echo Environment configuration found
 echo.
 
 :: Start PostgreSQL database

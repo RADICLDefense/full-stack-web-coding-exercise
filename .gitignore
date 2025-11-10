@@ -44,3 +44,6 @@ coverage/
 # Temporary files
 tmp/
 temp/
+
+# Confidential interviewer materials (do not share with candidates)
+HIRING_GUIDE.md

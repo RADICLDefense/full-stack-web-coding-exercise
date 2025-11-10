@@ -1,6 +1,30 @@
-# RADICL Coding Exercises
+# RADICL Fullstack Developer II - Coding Exercise
 
-A full-stack application demonstrating a modern web architecture with React.js frontend and mixed Node.js and Go backend services.
+> ## 🎯 START HERE: [CANDIDATE_README.md](CANDIDATE_README.md)
+> 
+> **If you're a candidate:** Everything you need is in **[CANDIDATE_README.md](CANDIDATE_README.md)**
+> 
+> This file contains technical documentation for the existing application. Candidates should begin with the exercise instructions in CANDIDATE_README.md.
+
+---
+
+## About This Exercise
+
+This is a take-home coding exercise for our **Fullstack Developer II** position. You'll be building a cybersecurity operations dashboard using this existing full-stack application as your foundation.
+
+**What's already here:**
+- Working React frontend (with example components)
+- Node.js and Go backend services (with example endpoints)
+- PostgreSQL database (ready for your schema)
+- Example data visualizations and tables (not related to security)
+
+**What you'll build:**
+- Cybersecurity-themed database schema
+- Security event APIs
+- Professional dashboard with visualizations
+- Your own creative features
+
+This exercise tests your ability to adapt existing code and build new features - a realistic representation of our daily work.
 
 ## Architecture
 
@@ -45,12 +69,46 @@ radicl-coding-exercises/
 ## Quick Start
 
 ### Prerequisites
-- Node.js 18+ and npm
+- **Node.js 20.19+ or 22.12+** and npm (required for Vite 7)
 - Go 1.21+
 - Docker and Docker Compose (for database)
 - Terminal access
 
-### 1. Start the PostgreSQL Database
+> **⚠️ Important:** This project uses Vite 7, which requires Node.js 20.19+ or 22.12+. If you're using Node.js 20.x, ensure you have at least version 20.19. We recommend using [nvm (Node Version Manager)](https://github.com/nvm-sh/nvm) to manage Node.js versions.
+
+**Install/Upgrade Node.js with nvm:**
+```bash
+# Install nvm (if not already installed)
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
+
+# Install Node.js 20.19 or later
+nvm install 20.19
+nvm use 20.19
+
+# Verify version
+node --version  # Should show v20.19.x or higher
+```
+
+### 1. Configure Environment Variables
+
+**Important:** Create `.env` files for database connectivity:
+
+```bash
+# Copy the example environment file to create .env files
+cp ENV.example backend/node-service/.env
+cp ENV.example backend/go-service/.env
+```
+
+The default values in `ENV.example` are pre-configured for local development and will work immediately.
+
+**What's configured:**
+- PostgreSQL connection strings
+- Database credentials (radicl_user/radicl_password)
+- Service ports (3001 for Node.js, 3002 for Go)
+
+> **Note:** These are development credentials only. Never use these in production!
+
+### 2. Start the PostgreSQL Database
 
 ```bash
 docker-compose up -d
@@ -58,7 +116,7 @@ docker-compose up -d
 
 The database will run on `localhost:5432`. See [database/README.md](database/README.md) for detailed configuration.
 
-### 2. Start the Node.js Backend
+### 3. Start the Node.js Backend
 
 ```bash
 cd backend/node-service
@@ -68,7 +126,7 @@ npm run dev
 
 The Node.js service will run on `http://localhost:3001`
 
-### 3. Start the Go Backend
+### 4. Start the Go Backend
 
 ```bash
 cd backend/go-service
@@ -78,7 +136,7 @@ go run main.go
 
 The Go service will run on `http://localhost:3002`
 
-### 4. Start the React Frontend
+### 5. Start the React Frontend
 
 ```bash
 cd frontend
@@ -272,6 +330,49 @@ go build -o go-service
 ## Troubleshooting
 
 Common issues and quick solutions:
+
+### Database Connection Errors
+
+**Symptom:** Backend services fail with "Failed to fetch data from database" or cannot connect to PostgreSQL
+
+**Solution:**
+```bash
+# Check if .env files exist
+ls backend/node-service/.env
+ls backend/go-service/.env
+
+# If missing, copy from template:
+cp ENV.example backend/node-service/.env
+cp ENV.example backend/go-service/.env
+
+# Restart the backend services
+cd backend/node-service
+npm run dev
+```
+
+**Common causes:**
+- Missing `.env` files (most common)
+- Database not running (`docker-compose up -d`)
+- Incorrect credentials in `.env` file
+- Database not initialized
+
+### Node.js Version Issues
+
+**Symptom:** Frontend fails to start with error: `crypto.hash is not a function` or `Vite requires Node.js version 20.19+ or 22.12+`
+
+**Solution:**
+```bash
+# Check your current Node.js version
+node --version
+
+# If below 20.19, upgrade using nvm:
+nvm install 20.19
+nvm use 20.19
+
+# Restart the frontend
+cd frontend
+npm run dev
+```
 
 ### Port Already in Use
 ```bash
