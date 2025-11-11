@@ -141,9 +141,11 @@ func main() {
 	// Test database connection
 	err = dbPool.Ping(context.Background())
 	if err != nil {
-		log.Fatalf("Unable to connect to database: %v\n", err)
+		log.Printf("Warning: Unable to connect to database: %v\n", err)
+		log.Println("Service will start anyway. Database operations may fail.")
+	} else {
+		log.Println("Connected to PostgreSQL database")
 	}
-	log.Println("Connected to PostgreSQL database")
 
 	// Get service port
 	port := os.Getenv("PORT")
