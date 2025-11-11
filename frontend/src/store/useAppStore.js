@@ -1,7 +1,31 @@
 import { create } from 'zustand'
 
-const NODE_API_URL = 'http://localhost:3001'
-const GO_API_URL = 'http://localhost:3002'
+// Build API URLs from environment variables
+// Render provides service names like "radicl-node-service" via property: host
+// We need to append .onrender.com for the full domain
+function buildApiUrl(envVar, defaultLocalUrl) {
+  if (!envVar) {
+    return defaultLocalUrl
+  }
+  
+  // If it already has a protocol, use as-is
+  if (envVar.startsWith('http://') || envVar.startsWith('https://')) {
+    return envVar
+  }
+  
+  // If it's a Render service name (no dots), append .onrender.com
+  if (!envVar.includes('.')) {
+    return `https://${envVar}.onrender.com`
+  }
+  
+  // Otherwise assume it's a full domain
+  return `https://${envVar}`
+}
+
+const NODE_API_URL = buildApiUrl(import.meta.env.VITE_NODE_API_URL, 'http://localhost:3001')
+const GO_API_URL = buildApiUrl(import.meta.env.VITE_GO_API_URL, 'http://localhost:3002')
+
+console.log('API URLs configured:', { NODE_API_URL, GO_API_URL })
 
 export const useAppStore = create((set, get) => ({
   // State

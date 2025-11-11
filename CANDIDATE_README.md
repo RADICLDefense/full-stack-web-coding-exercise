@@ -69,6 +69,24 @@ For detailed setup instructions, see the main [README.md](README.md).
 
 Your task is to create a feature-rich dashboard that displays security events and threat intelligence data.
 
+### Two Approaches to Consider
+
+You have flexibility in how you approach this challenge:
+
+**Approach A: Breadth - Multiple Dashboard Components**
+- Create samples of several different dashboard visualizations (e.g., charts, tables, metrics cards)
+- Demonstrate your ability to build varied UI components and integrate different visualization types
+- Show versatility across the full stack
+
+**Approach B: Depth - One Comprehensive Component + Backend Skills**
+- Focus on designing **one polished, feature-rich dashboard component** with excellent UX
+- **Demonstrate comprehensive backend skills** by leveraging **both** services:
+  - **Go service:** Handles data processing, aggregation, complex queries, or transformations
+  - **Node.js service:** Renders the processed data to the frontend, handles API composition, or serves as the frontend gateway
+- Show depth in architecture, API design, and backend engineering
+
+**Both approaches are equally valued!** Choose the one that best showcases your strengths and interests.
+
 ### Sample Dashboard Ideas
 
 Not sure what to build? Here are some feature ideas with the problems they solve:
@@ -108,41 +126,61 @@ Not sure what to build? Here are some feature ideas with the problems they solve
 
 **Problem solved:** Provide executive-level overview of security posture at a glance, showing key performance indicators for the security operations team.
 
+### Executive-Level Dashboard Ideas
+
+These visualizations focus on business value, ROI, and communicating security effectiveness to leadership:
+
+#### 8. Attack Surface Reduction Trend & Summary
+**Visualization:** Combined dashboard showing trend line of attack surface reduction over time, plus summary cards for key metrics: exposed endpoints eliminated, vulnerabilities patched, unnecessary services disabled, access points hardened
+
+**Problem solved:** Executives need to see that security investments are actively reducing organizational risk exposure. This visualization tells a complete story: not just what threats were blocked, but how the organization's overall attack surface is shrinking through proactive security measures. Shows both current security posture (summary metrics) and trajectory of improvement (trend), validating that security spending delivers measurable, sustained business value.
+
+#### 9. Cost Avoidance / ROI Metrics
+**Visualization:** Dollar value cards showing "Potential Breach Costs Avoided" or "ROI on Security Investment"
+
+**Problem solved:** CFOs and executives need to justify security spending. This quantifies the financial impact of prevented breaches based on industry average breach costs.
+
+#### 10. Compliance Status Dashboard
+**Visualization:** Status indicators for compliance frameworks (SOC 2, ISO 27001, GDPR, HIPAA) with percentage completion
+
+**Problem solved:** For regulated industries, executives need immediate visibility into compliance status to avoid penalties and maintain certifications. Shows security as a business enabler, not just cost center.
+
+#### 11. Mean Time to Detect & Respond (MTTD/MTTR)
+**Visualization:** Trend chart showing improving response times, with industry benchmark comparison
+
+**Problem solved:** Demonstrates operational excellence and efficiency improvements. Faster response times mean less potential damage from attacks, which translates to lower business risk.
+
 ## Minimum Requirements
 
 You must complete all of these to be considered for the position:
 
 ### Database Layer
 
-- Design and implement a database schema for security events/threat data
-- Schema should support: events, threats, severity levels, timestamps, affected systems, etc.
-- Use enums/constraints for fields like `event_type`, `severity`, `status`
+- Design and implement a database schema for data displayed in dashboard
 - We've provided 5 sample records to get you started (see `database/init/02-security-data.sql`)
-- Feel free to add more records if you want richer visualizations
-- **IMPORTANT:** If you add new SQL initialization scripts, document them in the [README.md](README.md) database section
+- Feel free to change based on the features you chose to develop
+- **IMPORTANT:** If you add new SQL initialization scripts, document them in the [README.md](README.md) database section so your project can be setup correctly by another engineer
 
 ### Backend Layer
 
 **Choose Node.js OR Go (or implement both for bonus points!)**
 
 - **TypeScript is REQUIRED for Node.js implementation**
-- Create RESTful API endpoints to fetch security event data
-- Implement filtering and/or sorting capabilities
+- Create RESTful API endpoints to fetch data
 - Return properly structured JSON responses
 - Follow REST best practices
 
 ### Frontend Layer
 
 - **TypeScript is REQUIRED for React implementation**
-- Install and use a modern UI library:
+- Install and use a modern UI library at your discretion:
   - **Tailwind CSS** (utility-first, highly customizable)
   - **Material-UI (MUI)** (comprehensive component library)
   - Or another library of your choice
 - Create a cybersecurity-themed dashboard with professional styling
-- Display security events in a table or list with sorting/filtering capabilities
-- Include **at least one data visualization** (chart/graph) showing threat trends
-- Make it responsive and visually polished
-- Focus on good UX (loading states, error handling, etc.)
+- Include **at least one data visualization** (chart/graph) showing data from the db
+- Bonus: Make it responsive down to 1366 X 768, minimum is 1080P
+- Bonus: Focus on good UX (loading states, error handling, etc.)
 
 ### Documentation & Setup Instructions
 
@@ -176,12 +214,10 @@ These are suggestions to demonstrate excellence, not requirements. Feel free to 
   - Loading skeletons
   - Comprehensive error handling
   - Dark mode toggle
-- Docker deployment configuration
+- Deployment configuration
 - **Helpful git commit history that tells the development story** (we love seeing your thought process!)
 - Real-time or polling updates for live data
 - Export data functionality (CSV, JSON)
-- Accessibility features (ARIA labels, keyboard navigation)
-- Responsive design that works great on mobile
 
 ## Deployment Guide (Optional Bonus)
 

@@ -10,28 +10,26 @@
 # For more info: https://render.com/docs/blueprint-spec
 
 # ============================================
+# Databases
+# ============================================
+
+databases:
+  - name: radicl-postgres
+    plan: free
+    region: oregon
+
+# ============================================
 # Services
 # ============================================
 
 services:
-  # PostgreSQL Database
-  - type: pserv
-    name: radicl-postgres
-    env: docker
-    plan: free
-    region: oregon
-    databases:
-      - name: radicl_db
-        user: radicl_user
-        plan: free
-
   # Node.js Backend Service
   - type: web
     name: radicl-node-service
     env: node
     region: oregon
     plan: free
-    buildCommand: "cd backend/node-service && npm install && npm run build"
+    buildCommand: "cd backend/node-service && npm install"
     startCommand: "cd backend/node-service && npm start"
     envVars:
       - key: DATABASE_URL
@@ -83,9 +81,7 @@ services:
   - type: web
     name: radicl-frontend
     env: static
-    region: oregon
-    plan: free
-    buildCommand: "cd frontend && npm install && npm run build"
+    buildCommand: "cd frontend && npm install --include=dev && npm run build"
     staticPublishPath: ./frontend/dist
     pullRequestPreviewsEnabled: true
     envVars:
