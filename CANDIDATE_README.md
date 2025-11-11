@@ -16,7 +16,7 @@ Your task is to transform this starter application into a **cybersecurity dashbo
 - **Use all tools at your disposal** - We encourage you to leverage AI assistants, documentation, Stack Overflow, and any other resources you typically use in your development workflow.
 - **Minimum time commitment:** 2 hours (but we encourage you to go above and beyond if you're having fun!)
 - **Create a PRIVATE repository** for your work - DO NOT fork this repository publicly. See setup instructions below.
-- **Grant us collaborator access** to your private repository when submitting. Complete the **[INTERVIEWEE_RESULTS.md](INTERVIEWEE_RESULTS.md)** file with your submission details.
+- **Grant us collaborator access** to your private repository when submitting. Complete the **[CANDIDATE_RESULTS.md](CANDIDATE_RESULTS.md)** file with your submission details.
 - **CRITICAL:** Keep the [README.md](README.md) updated with any setup changes. We will run your application locally, and accurate setup instructions are required.
 
 ## Getting Started
@@ -364,7 +364,7 @@ When you're ready to submit:
 
 ### Complete Your Submission Details
 
-Please complete the provided **INTERVIEWEE_RESULTS.md** file with:
+Please complete the provided **CANDIDATE_RESULTS.md** file with:
 
 - Your contact information
 - Link to your private GitHub repository (required)
