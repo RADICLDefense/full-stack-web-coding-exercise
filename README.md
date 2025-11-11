@@ -28,6 +28,19 @@ This is a take-home coding exercise for our **Fullstack Developer II** position.
 
 This exercise tests your ability to adapt existing code and build new features - a realistic representation of our daily work.
 
+## ⚠️ IMPORTANT: Keep This Documentation Updated
+
+**If you modify anything about the setup process, YOU MUST update this README immediately:**
+
+- ✅ Added new SQL scripts? Document them in the database section
+- ✅ Installed new npm packages or Go modules? Update the prerequisites and setup steps
+- ✅ Changed environment variables? Update the configuration section
+- ✅ Added new services or changed ports? Update the architecture and quick start sections
+- ✅ Modified database schema? Document the changes
+- ✅ Changed build commands? Update the development and production build sections
+
+**We will be running your application locally.** Outdated or incorrect setup instructions will significantly impact your evaluation. Test your instructions by cloning your repo in a fresh directory and following them exactly.
+
 ## Architecture
 
 ```

@@ -15,21 +15,44 @@ Your task is to transform this starter application into a **cybersecurity dashbo
 
 - **Use all tools at your disposal** - We encourage you to leverage AI assistants, documentation, Stack Overflow, and any other resources you typically use in your development workflow.
 - **Minimum time commitment:** 2 hours (but we encourage you to go above and beyond if you're having fun!)
-- **Fork this repository publicly** to your GitHub account and submit the link to your fork along with your deployed application. Complete the **[INTERVIEWEE_RESULTS.md](INTERVIEWEE_RESULTS.md)** file in your fork with your submission details.
+- **Create a PRIVATE repository** for your work - DO NOT fork this repository publicly. See setup instructions below.
+- **Grant us collaborator access** to your private repository when submitting. Complete the **[INTERVIEWEE_RESULTS.md](INTERVIEWEE_RESULTS.md)** file with your submission details.
+- **CRITICAL:** Keep the [README.md](README.md) updated with any setup changes. We will run your application locally, and accurate setup instructions are required.
 
 ## Getting Started
 
-### 1. Fork This Repository
+### 1. Clone This Repository
 
-Click the "Fork" button at the top of this repository to create a public fork under your GitHub account.
-
-### 2. Clone and Setup
+**Important:** Clone this repository directly - do NOT fork it. This keeps your work private and prevents other candidates from seeing your solution.
 
 ```bash
-# Clone your forked repository
-git clone https://github.com/YOUR_USERNAME/radicl-coding-exercises.git
+# Clone this repository to your local machine
+git clone https://github.com/ORIGINAL_OWNER/radicl-coding-exercises.git radicl-coding-exercises
 cd radicl-coding-exercises
 
+# Remove the existing git remote
+git remote remove origin
+```
+
+### 2. Create Your Private Repository
+
+1. Go to GitHub and create a **new private repository** (e.g., `radicl-exercise-yourname`)
+2. **Do NOT initialize it** with a README, .gitignore, or license (we already have those)
+3. Copy the repository URL from GitHub
+
+### 3. Push to Your Private Repository
+
+```bash
+# Add your new private repository as the remote origin
+git remote add origin https://github.com/YOUR_USERNAME/your-private-repo-name.git
+
+# Push your code to your private repository
+git push -u origin main
+```
+
+### 4. Start Developing
+
+```bash
 # Follow the setup instructions in the main README.md
 # Quick start:
 docker-compose up -d  # Start PostgreSQL
@@ -96,6 +119,7 @@ You must complete all of these to be considered for the position:
 - Use enums/constraints for fields like `event_type`, `severity`, `status`
 - We've provided 5 sample records to get you started (see `database/init/02-security-data.sql`)
 - Feel free to add more records if you want richer visualizations
+- **IMPORTANT:** If you add new SQL initialization scripts, document them in the [README.md](README.md) database section
 
 ### Backend Layer
 
@@ -120,20 +144,27 @@ You must complete all of these to be considered for the position:
 - Make it responsive and visually polished
 - Focus on good UX (loading states, error handling, etc.)
 
-### Deployment
+### Documentation & Setup Instructions
 
-- Deploy your application to a hosting provider (use whatever is most convenient for you!)
-- **Recommended options with free tiers:**
-  - **Render.com** - Free PostgreSQL + web services (Recommended for full-stack)
-  - **Fly.io** - Developer-focused, great for Go services
-  - **Vercel** (frontend) + **Supabase/Neon** (PostgreSQL + backends)
-- Provide the deployed URL in your submission
-- See [Deployment Guide](#deployment-guide) below for platform-specific instructions
+- **CRITICAL:** Update the [README.md](README.md) if you make ANY changes that affect local setup:
+  - ✅ New SQL initialization scripts or seed data
+  - ✅ New dependencies or libraries installed
+  - ✅ New environment variables required
+  - ✅ New services or ports
+  - ✅ Database schema changes
+  - ✅ Build command changes
+- Include clear, step-by-step setup instructions
+- Document any prerequisites or configuration steps
+- Test your instructions on a fresh clone to ensure they work
+- **We need to be able to run your application locally** - incomplete or incorrect setup instructions will negatively impact your evaluation
 
 ## Bonus Ideas (Optional)
 
 These are suggestions to demonstrate excellence, not requirements. Feel free to be creative and add your own ideas!
 
+- **Deploy your application** to a hosting provider (Render.com, Vercel, Fly.io, etc.)
+  - See [Deployment Guide](#deployment-guide) below for platform-specific instructions
+  - Provide the deployed URL in your submission
 - Use **both Node.js AND Go services** with different data endpoints
 - Advanced visualizations (multiple chart types, interactive dashboards)
 - Sophisticated filtering/search functionality (date ranges, multi-select filters)
@@ -152,7 +183,9 @@ These are suggestions to demonstrate excellence, not requirements. Feel free to 
 - Accessibility features (ARIA labels, keyboard navigation)
 - Responsive design that works great on mobile
 
-## Deployment Guide
+## Deployment Guide (Optional Bonus)
+
+While deployment is not required, deploying your application can demonstrate additional skills and make it easier for us to review your work.
 
 ### Recommended: Render.com (Free Tier)
 
@@ -277,21 +310,44 @@ While we recommend Render, you're free to use any hosting platform you're comfor
 - **Vercel** (frontend) + **Supabase/Neon** (database) - Hybrid approach
 - **Any other platform** that supports Node.js, Go, PostgreSQL, and static sites
 
-**What matters:** Your application must be deployed, accessible, and working. Choose whatever platform makes you most productive!
+**What matters:** If you choose to deploy (bonus points!), your application should be accessible and working. Choose whatever platform makes you most productive!
 
 ## Submission
+
+### Grant Collaborator Access
+
+When you're ready to submit:
+
+1. Go to your private repository on GitHub
+2. Navigate to **Settings** → **Collaborators and teams** (or **Manage Access**)
+3. Click **Add people** or **Invite a collaborator**
+4. Add the following GitHub usernames with **Read** access:
+   - `INTERVIEWER_GITHUB_USERNAME_1` (replace with actual username)
+   - `INTERVIEWER_GITHUB_USERNAME_2` (if applicable)
+5. We'll receive an email invitation and can review your code while keeping it private
+
+### Complete Your Submission Details
 
 Please complete the provided **INTERVIEWEE_RESULTS.md** file with:
 
 - Your contact information
-- Links to your deployed application and GitHub fork
+- Link to your private GitHub repository (required)
+- Confirmation that you've granted collaborator access to the interviewer(s)
+- Link to your deployed application (optional, but recommended)
 - Summary of features you implemented
 - Technologies you chose and why
 - Time spent (approximate)
 - Challenges you faced and how you solved them
 - Any trade-offs or decisions you made
 - Future improvements given more time
-- Setup instructions for running locally
+- **Clear, complete setup instructions for running locally** (REQUIRED - we will run your application locally)
+
+### Notify Your Recruiting Contact
+
+Send an email to your recruiting contact with:
+- Link to your private repository
+- Confirmation that collaborator access has been granted
+- Any additional context you'd like to share
 
 ## Evaluation Criteria
 
@@ -302,9 +358,14 @@ We'll be evaluating based on:
 ✅ **TypeScript Usage:** Proper typing for Node.js and React portions
 ✅ **UI/UX:** Functional, polished interface with good user experience
 ✅ **API Design:** Well-structured RESTful endpoints
-✅ **Deployment:** Successfully deployed and accessible application
+✅ **Documentation:** Clear, complete, and accurate setup instructions that work
 ✅ **Problem Solving:** Your approach to challenges and technical decisions
 ✅ **Completeness:** All minimum requirements met
+
+**Bonus Points:**
+⭐ **Deployment:** Successfully deployed and accessible application
+⭐ **Testing:** Unit or integration tests
+⭐ **Additional Features:** Creative bonus features that enhance the application
 
 ## Questions?
 
@@ -312,12 +373,15 @@ If you have any questions about the requirements or setup, please reach out to y
 
 ## Tips for Success
 
+- **Keep your repository private** - This protects your work and prevents other candidates from seeing your solution
 - **Start with the database schema** - A solid foundation makes everything easier
 - **Get something working end-to-end quickly** - Then iterate and improve
 - **Focus on the minimum requirements first** - Then add bonus features if time permits
-- **Test your deployed application** - Make sure it works in production!
+- **Update the README.md as you go** - Document new SQL scripts, dependencies, or setup steps immediately
+- **Test your setup instructions** - Clone your repo in a fresh directory and follow your own instructions
 - **Write meaningful commit messages** - They tell the story of your development process
 - **Don't overcomplicate** - A simple, polished solution is better than a complex, buggy one
+- **Grant collaborator access early** - Don't wait until the last minute; test that we can access your repository
 
 Good luck, and happy coding! We're excited to see what you build! 🚀
 
