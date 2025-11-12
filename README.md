@@ -104,6 +104,8 @@ nvm use 20.19
 node --version  # Should show v20.19.x or higher
 ```
 
+### Run `start.sh` or `start.bat` to setup the application for you, but here are manual instructions for reference
+
 ### 1. Configure Environment Variables
 
 **Important:** Create `.env` files for database connectivity:
@@ -251,7 +253,7 @@ backend/go-service/
 └── .env.example
 ```
 
-## Features
+## Included Features
 
 - ✅ Modern React frontend with responsive design
 - ✅ Interactive data tables with sorting (TanStack Table)
@@ -263,7 +265,6 @@ backend/go-service/
 - ✅ Health check endpoints for service monitoring
 - ✅ Environment-based configuration
 - ✅ Hot reload for development
-- ✅ Clean, maintainable code structure
 
 ## Environment Configuration
 
@@ -416,18 +417,6 @@ cd backend/node-service && npm install && cd ../..
 docker-compose down -v
 docker-compose up -d
 ```
-
-**For detailed troubleshooting**, see [TROUBLESHOOTING.md](TROUBLESHOOTING.md)
-
-## Next Steps
-
-- Add authentication and authorization
-- Implement a database layer
-- Add unit and integration tests
-- Set up Docker containers
-- Configure CI/CD pipeline
-- Add logging and monitoring
-- Implement API versioning
 
 ## License
 
