@@ -28,18 +28,18 @@ This is a take-home coding exercise for our **Fullstack Developer II** position.
 
 This exercise tests your ability to adapt existing code and build new features - a realistic representation of our daily work.
 
-## ⚠️ IMPORTANT: Keep This Documentation Updated
+## ⚠️ IMPORTANT: Document Your Setup Changes
 
-**If you modify anything about the setup process, YOU MUST update this README immediately:**
+**If you modify anything about the setup process, YOU MUST document it in CANDIDATE_RESULTS.md:**
 
-- ✅ Added new SQL scripts? Document them in the database section
-- ✅ Installed new npm packages or Go modules? Update the prerequisites and setup steps
-- ✅ Changed environment variables? Update the configuration section
-- ✅ Added new services or changed ports? Update the architecture and quick start sections
-- ✅ Modified database schema? Document the changes
-- ✅ Changed build commands? Update the development and production build sections
+- ✅ Added new SQL scripts? Document where they are and how to run them
+- ✅ Installed new npm packages or Go modules? List the new dependencies
+- ✅ Changed environment variables? Document what's required
+- ✅ Added new services or changed ports? Specify the configuration
+- ✅ Modified database schema? Explain the migration steps
+- ✅ Changed build commands? Provide the new commands
 
-**We will be running your application locally.** Outdated or incorrect setup instructions will significantly impact your evaluation. Test your instructions by cloning your repo in a fresh directory and following them exactly.
+**We will be running your application locally.** Include clear, step-by-step setup instructions in the CANDIDATE_RESULTS.md file. Test your instructions by cloning your repo in a fresh directory and following them exactly.
 
 ## Architecture
 

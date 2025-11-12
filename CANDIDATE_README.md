@@ -17,7 +17,7 @@ Your task is to transform this starter application into a **cybersecurity dashbo
 - **Minimum time commitment:** 2 hours (but we encourage you to go above and beyond if you're having fun!)
 - **Create a PRIVATE repository** for your work - DO NOT fork this repository publicly. See setup instructions below.
 - **Grant us collaborator access** to your private repository when submitting. Complete the **[CANDIDATE_RESULTS.md](CANDIDATE_RESULTS.md)** file with your submission details.
-- **CRITICAL:** Keep the [README.md](README.md) updated with any setup changes. We will run your application locally, and accurate setup instructions are required.
+- **CRITICAL:** Include any custom setup instructions in [CANDIDATE_RESULTS.md](CANDIDATE_RESULTS.md). We will run your application locally, and accurate setup instructions are required.
 
 ## Getting Started
 
@@ -159,7 +159,7 @@ You must complete all of these to be considered for the position:
 - Design and implement a database schema for data displayed in dashboard
 - We've provided 5 sample records to get you started (see `database/init/02-security-data.sql`)
 - Feel free to change based on the features you chose to develop
-- **IMPORTANT:** If you add new SQL initialization scripts, document them in the [README.md](README.md) database section so your project can be setup correctly by another engineer
+- **IMPORTANT:** If you add new SQL initialization scripts, document them in the [CANDIDATE_RESULTS.md](CANDIDATE_RESULTS.md) file so your project can be setup correctly by another engineer
 
 ### Backend Layer
 
@@ -184,24 +184,26 @@ You must complete all of these to be considered for the position:
 
 ### Documentation & Setup Instructions
 
-- **CRITICAL:** Update the [README.md](README.md) if you make ANY changes that affect local setup:
+- **CRITICAL:** Document ANY custom setup steps in the [CANDIDATE_RESULTS.md](CANDIDATE_RESULTS.md) file if you make changes that affect local setup such as:
   - ✅ New SQL initialization scripts or seed data
   - ✅ New dependencies or libraries installed
   - ✅ New environment variables required
   - ✅ New services or ports
   - ✅ Database schema changes
   - ✅ Build command changes
-- Include clear, step-by-step setup instructions
-- Document any prerequisites or configuration steps
-- Test your instructions on a fresh clone to ensure they work
-- **We need to be able to run your application locally** - incomplete or incorrect setup instructions will negatively impact your evaluation
+- **We need to be able to run your application locally** - incomplete or incorrect setup instructions will negatively impact your evaluation. Test your instructions on a fresh clone to ensure they work
 
 ## Bonus Ideas (Optional)
 
 These are suggestions to demonstrate excellence, not requirements. Feel free to be creative and add your own ideas!
 
 - **Deploy your application** to a hosting provider (Render.com, Vercel, Fly.io, etc.)
-  - See [Deployment Guide](#deployment-guide) below for platform-specific instructions
+  - Render.com setup is included in this repo and you can follow these steps if you so choose:
+    1. Sign up at [render.com](https://render.com)
+    2. Click "New +" and select "Blueprint"
+    3. Connect your GitHub repository
+    4. Render will automatically create all services from `render.yaml`
+    5. Set any required environment variables in the dashboard
   - Provide the deployed URL in your submission
 - Use **both Node.js AND Go services** with different data endpoints
 - Advanced visualizations (multiple chart types, interactive dashboards)
@@ -218,81 +220,6 @@ These are suggestions to demonstrate excellence, not requirements. Feel free to 
 - **Helpful git commit history that tells the development story** (we love seeing your thought process!)
 - Real-time or polling updates for live data
 - Export data functionality (CSV, JSON)
-
-## Deployment Guide (Optional Bonus)
-
-While deployment is not required, deploying your application can demonstrate additional skills and make it easier for us to review your work.
-
-### Recommended: Render.com (Free Tier)
-
-We recommend **Render.com** for this exercise because it provides an easy all-in-one solution with PostgreSQL, backend services, and frontend hosting all on the free tier.
-
-#### Why Render?
-- ✅ 100% free tier includes everything you need
-- ✅ Easy setup with GitHub integration
-- ✅ Supports PostgreSQL + Node.js + Go + Static sites
-- ✅ One-click deploy with included `render.yaml` blueprint
-- ✅ Auto-deploys on git push
-
-#### Quick Start with Render
-
-**Option A: Blueprint Deploy (Easiest)**
-1. Sign up at [render.com](https://render.com)
-2. Click "New" → "Blueprint"
-3. Connect your GitHub repository
-4. Render will automatically create all services from `render.yaml`
-5. Set any required environment variables in the dashboard
-
-**Option B: Manual Setup**
-1. **Create PostgreSQL Database:**
-   - Dashboard → "New +" → "PostgreSQL"
-   - Name: `radicl-postgres`
-   - Plan: Free
-   - Note the connection details
-
-2. **Create Node.js Backend Service:**
-   - Dashboard → "New +" → "Web Service"
-   - Connect your GitHub repo
-   - Root Directory: `backend/node-service`
-   - Build Command: `npm install && npm run build`
-   - Start Command: `npm start`
-   - Add environment variables:
-     ```env
-     DATABASE_URL=[Your PostgreSQL Internal Connection URL]
-     PORT=3001
-     NODE_ENV=production
-     ```
-
-3. **Create Go Backend Service (Optional):**
-   - Dashboard → "New +" → "Web Service"
-   - Root Directory: `backend/go-service`
-   - Build Command: `go build -o service`
-   - Start Command: `./service`
-   - Add database environment variables
-
-4. **Create Frontend Static Site:**
-   - Dashboard → "New +" → "Static Site"
-   - Root Directory: `frontend`
-   - Build Command: `npm install && npm run build`
-   - Publish Directory: `dist`
-   - Add environment variables:
-     ```env
-     VITE_NODE_API_URL=https://your-node-service.onrender.com
-     VITE_GO_API_URL=https://your-go-service.onrender.com
-     ```
-
-5. **Update CORS Settings:**
-   - Update your backend code to allow requests from your Render frontend URL
-   - Commit and push - Render will auto-deploy
-
-#### Important Notes
-
-⚠️ **Free Tier Limitations:**
-- Services spin down after 15 minutes of inactivity
-- First request after sleep takes ~30-60 seconds (cold start)
-- Wake up your services before your demo/submission!
-
-💡 **Pro Tip:** Keep a tab open with your deployed app or use a free uptime monitor like UptimeRobot to keep it awake.
 
 #### Environment Variables Reference
 
@@ -321,33 +248,6 @@ DB_SSLMODE=require
 PORT=3002
 ```
 
-#### Troubleshooting
-
-**CORS Errors:**
-- Check that your backend allows requests from your frontend URL
-- Update CORS settings in your backend code and redeploy
-
-**Database Connection Errors:**
-- Verify DATABASE_URL or DB_* environment variables are correct
-- Ensure using internal connection URL (not external)
-- Check SSL mode is set to `require` for Render
-
-**Build Failures:**
-- Check build logs in Render dashboard
-- Ensure all dependencies are in package.json
-- Test build locally: `npm run build`
-
-### Alternative Deployment Options
-
-While we recommend Render, you're free to use any hosting platform you're comfortable with:
-
-- **Railway.app** - All-in-one with $5 free monthly credit
-- **Fly.io** - Developer-focused, great for containerized apps  
-- **Vercel** (frontend) + **Supabase/Neon** (database) - Hybrid approach
-- **Any other platform** that supports Node.js, Go, PostgreSQL, and static sites
-
-**What matters:** If you choose to deploy (bonus points!), your application should be accessible and working. Choose whatever platform makes you most productive!
-
 ## Submission
 
 ### Grant Collaborator Access
@@ -358,8 +258,10 @@ When you're ready to submit:
 2. Navigate to **Settings** → **Collaborators and teams** (or **Manage Access**)
 3. Click **Add people** or **Invite a collaborator**
 4. Add the following GitHub usernames with **Read** access:
-   - `INTERVIEWER_GITHUB_USERNAME_1` (replace with actual username)
-   - `INTERVIEWER_GITHUB_USERNAME_2` (if applicable)
+   - `JamesLamarRAD`
+   - `mdpete4`
+   - `FrankHassanabad`
+   - `nickcarnival`
 5. We'll receive an email invitation and can review your code while keeping it private
 
 ### Complete Your Submission Details
@@ -376,7 +278,7 @@ Please complete the provided **CANDIDATE_RESULTS.md** file with:
 - Challenges you faced and how you solved them
 - Any trade-offs or decisions you made
 - Future improvements given more time
-- **Clear, complete setup instructions for running locally** (REQUIRED - we will run your application locally)
+- **Clear, complete setup instructions for running locally in CANDIDATE_RESULTS.md** (REQUIRED - we will run your application locally)
 
 ### Notify Your Recruiting Contact
 
@@ -394,7 +296,7 @@ We'll be evaluating based on:
 ✅ **TypeScript Usage:** Proper typing for Node.js and React portions
 ✅ **UI/UX:** Functional, polished interface with good user experience
 ✅ **API Design:** Well-structured RESTful endpoints
-✅ **Documentation:** Clear, complete, and accurate setup instructions that work
+✅ **Documentation:** Clear, complete setup instructions in CANDIDATE_RESULTS.md that work
 ✅ **Problem Solving:** Your approach to challenges and technical decisions
 ✅ **Completeness:** All minimum requirements met
 
@@ -406,18 +308,6 @@ We'll be evaluating based on:
 ## Questions?
 
 If you have any questions about the requirements or setup, please reach out to your recruiting contact.
-
-## Tips for Success
-
-- **Keep your repository private** - This protects your work and prevents other candidates from seeing your solution
-- **Start with the database schema** - A solid foundation makes everything easier
-- **Get something working end-to-end quickly** - Then iterate and improve
-- **Focus on the minimum requirements first** - Then add bonus features if time permits
-- **Update the README.md as you go** - Document new SQL scripts, dependencies, or setup steps immediately
-- **Test your setup instructions** - Clone your repo in a fresh directory and follow your own instructions
-- **Write meaningful commit messages** - They tell the story of your development process
-- **Don't overcomplicate** - A simple, polished solution is better than a complex, buggy one
-- **Grant collaborator access early** - Don't wait until the last minute; test that we can access your repository
 
 Good luck, and happy coding! We're excited to see what you build! 🚀
 
