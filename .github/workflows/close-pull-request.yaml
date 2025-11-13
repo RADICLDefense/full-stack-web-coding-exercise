@@ -10,4 +10,5 @@ jobs:
     steps:
     - uses: superbrothers/close-pull-request@v3
       with:        
+        # this pull request should auto close
         comment: "We do not accept PRs. If you have any questions, please feel free to contact us."
