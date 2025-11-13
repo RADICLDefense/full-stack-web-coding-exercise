@@ -12,6 +12,8 @@
 
 **Date Submitted:** [YYYY-MM-DD]
 
+**Time Spent:**[hh]
+
 ---
 
 ## Implementation Summary
@@ -76,6 +78,12 @@ npm run frontend
 
 ---
 
+## Tools Used
+*Tools/Resources used in completing your exercise including: IDE, AI, Web References
+*If using AI, include some of the prompts you used in completing major portions of the exercise
+
+[Your notes here]
+
 ## Additional Notes
 
 *Any other information you'd like to share with evaluators.*
@@ -83,8 +91,4 @@ npm run frontend
 [Your notes here - optional]
 
 ---
-
-## Thank You!
-
-Thank you for reviewing my submission. I enjoyed working on this challenge and look forward to discussing my implementation with you!
 

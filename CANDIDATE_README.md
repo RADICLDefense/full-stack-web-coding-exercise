@@ -15,6 +15,7 @@ Your task is to transform this starter application into a **cybersecurity dashbo
 
 - **Use all tools at your disposal** - We encourage you to leverage AI assistants, documentation, Stack Overflow, and any other resources you typically use in your development workflow.
 - **Minimum time commitment:** 2 hours (but we encourage you to go above and beyond if you're having fun!)
+- **Maximum time commitment:** 6 hours
 - **Create a PRIVATE repository** for your work - DO NOT fork this repository publicly. See setup instructions below.
 - **Grant us collaborator access** to your private repository when submitting. Complete the **[CANDIDATE_RESULTS.md](CANDIDATE_RESULTS.md)** file with your submission details.
 - **CRITICAL:** Include any custom setup instructions in [CANDIDATE_RESULTS.md](CANDIDATE_RESULTS.md). We will run your application locally, and accurate setup instructions are required.
@@ -27,7 +28,7 @@ Your task is to transform this starter application into a **cybersecurity dashbo
 
 ```bash
 # Clone this repository to your local machine
-git clone https://github.com/ORIGINAL_OWNER/radicl-coding-exercises.git radicl-coding-exercises
+git clone https://github.com/RADICLDefense/radicl-coding-exercises.git radicl-coding-exercises
 cd radicl-coding-exercises
 
 # Remove the existing git remote
@@ -220,33 +221,6 @@ These are suggestions to demonstrate excellence, not requirements. Feel free to 
 - **Helpful git commit history that tells the development story** (we love seeing your thought process!)
 - Real-time or polling updates for live data
 - Export data functionality (CSV, JSON)
-
-#### Environment Variables Reference
-
-**Frontend (`frontend/.env`):**
-```env
-VITE_NODE_API_URL=https://your-node-service.onrender.com
-VITE_GO_API_URL=https://your-go-service.onrender.com
-```
-
-**Node.js Backend:**
-```env
-DATABASE_URL=postgresql://user:password@host:port/database
-PORT=3001
-NODE_ENV=production
-ALLOWED_ORIGINS=https://your-frontend.onrender.com
-```
-
-**Go Backend:**
-```env
-DB_HOST=your-postgres-host.onrender.com
-DB_PORT=5432
-DB_NAME=your-database-name
-DB_USER=your-username
-DB_PASSWORD=your-password
-DB_SSLMODE=require
-PORT=3002
-```
 
 ## Submission
 
