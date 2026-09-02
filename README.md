@@ -1,4 +1,4 @@
-# RADICL Fullstack Developer II - Coding Exercise
+# RADICL Fullstack Developer - Coding Exercise
 
 > ## 🎯 START HERE: [CANDIDATE_README.md](CANDIDATE_README.md)
 > 
