@@ -12,7 +12,7 @@
 
 ## About This Exercise
 
-This is a take-home coding exercise for our **Fullstack Developer II** position. You'll be building a cybersecurity operations dashboard using this existing full-stack application as your foundation.
+This is a take-home coding exercise for our **Fullstack Developer** position. You'll be building a cybersecurity operations dashboard using this existing full-stack application as your foundation.
 
 **What's already here:**
 - Working React frontend (with example components)
