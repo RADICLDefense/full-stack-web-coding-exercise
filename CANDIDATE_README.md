@@ -1,4 +1,4 @@
-# Fullstack Developer II - Take-Home Coding Exercise
+# Fullstack Developer - Take-Home Coding Exercise
 
 Welcome! This coding exercise is designed to assess your fullstack development skills for a **Fullstack Developer II** position at RADICL. We're excited to see what you can build!
 
@@ -232,7 +232,7 @@ When you're ready to submit:
 2. Navigate to **Settings** → **Collaborators and teams** (or **Manage Access**)
 3. Click **Add people** or **Invite a collaborator**
 4. Add the following GitHub usernames with **Read** access:
-   - `JamesLamarRAD`
+   - `EliasOrtizRAD`
    - `mdpete4`
    - `FrankHassanabad`
    - `nickcarnival`
